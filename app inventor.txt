@@ -1,0 +1,30 @@
+initialize global motivo to ""
+initialize global gastos to 0
+initialize global salario to get start value
+
+when calculo .Initialize
+do
+    set label_resto_valor .Text to get global salario
+
+when botao_limpar .Click
+do
+    set text_motivo .Text to ""
+    set text_gasto .Text to 0
+
+when botao_cadastro .Click
+do
+    set global motivo to get text_motivo .Text
+    set global gastos to get text_gasto .Text
+    set global salario to get global salario - get global gastos
+    set label_resto_valor .Text to get global salario
+    set text_motivo .Text to ""
+    set text_gasto .Text to 0
+    add items to list (get global lista_gastos) item (get global gastos)
+    add items to list (get global lista_motivo) item (get global motivo)
+    call list_motivos .AddItems itemsList (get global lista_gastos)
+    call list_valores .AddItems itemsList (get global lista_motivo)
+    remove list item list (get global lista_gastos) index 1
+    remove list item list (get global lista_motivo) index 1
+
+initialize global lista_gastos to create empty list
+initialize global lista_motivo to create empty list
