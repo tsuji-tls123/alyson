@@ -1,0 +1,65 @@
+# Inicializando variáveis globais
+motivo = ""
+gastos = 0
+salario = 1000  # Exemplo de valor inicial de salário
+
+# Listas para armazenar motivos e gastos
+lista_gastos = []
+lista_motivo = []
+
+# Função para inicializar a interface (simulação)
+def inicializar():
+    global salario
+    print(f"Salário inicial: {salario}")
+    
+# Função de limpar
+def limpar():
+    global motivo, gastos
+    motivo = ""
+    gastos = 0
+    print("Campos limpos!")
+
+# Função de cadastro
+def cadastro(motivo_input, gasto_input):
+    global motivo, gastos, salario
+    
+    motivo = motivo_input
+    gastos = float(gasto_input)
+    salario -= gastos
+    
+    # Atualizando os valores
+    print(f"Motivo: {motivo}")
+    print(f"Gasto: {gastos}")
+    print(f"Novo Salário: {salario}")
+    
+    # Adicionando os itens nas listas
+    lista_gastos.append(gastos)
+    lista_motivo.append(motivo)
+    
+    # Simulando a atualização da interface
+    print("Lista de Gastos:", lista_gastos)
+    print("Lista de Motivos:", lista_motivo)
+    
+    # Removendo o primeiro item da lista (como no código original)
+    if len(lista_gastos) > 1:
+        lista_gastos.pop(0)
+        lista_motivo.pop(0)
+    
+    # Exibindo o estado final
+    print("Gastos após remoção:", lista_gastos)
+    print("Motivos após remoção:", lista_motivo)
+
+# Função de teste
+def main():
+    # Inicializa a interface (mostra o salário)
+    inicializar()
+
+    # Cadastro de gastos
+    cadastro("Compra de alimento", 150)
+    cadastro("Pagamento de conta", 200)
+    
+    # Limpar campos
+    limpar()
+
+# Executar o exemplo
+main()
